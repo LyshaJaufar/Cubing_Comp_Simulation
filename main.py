@@ -69,6 +69,7 @@ def populateEventLists():
 def createTeam():
     for i in range(8):
         teams.append({})
+        counter = 0
         for event in events:
             randomList = []
             for j in range(len(cubers3)):
@@ -76,8 +77,7 @@ def createTeam():
                 while n in randomList:
                     n = random.randint(1, len(cubers3))
                 randomList.append(n)
-
-            counter = 0
+                
             if event == "222":
                 teams[i]["2x2"] = cubers2[randomList[counter]]
             elif event == "333":
@@ -102,5 +102,5 @@ def createTeam():
                 teams[i]["Squan"] = cubersSquan[randomList[counter]]
             elif event == "clock":
                 teams[i]["Clock"] = cubersClock[randomList[counter]]
-
+            counter += 1
 main()
