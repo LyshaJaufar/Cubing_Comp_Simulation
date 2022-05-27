@@ -9,6 +9,7 @@ from cuber import Cuber
 def main():
     if __name__ == '__main__':
         cuber.populateCuberLists()
+        populateTeams()
 
 def populateTeams():
     for i in range(8):

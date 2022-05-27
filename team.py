@@ -26,12 +26,5 @@ class Team:
 
                         self.teammates[event] = cubers[events.index(event)][i]
                         cubers[events.index(event)][i].inTeam = True
+                        cubers[events.index(event)][i].team = self.idNum
                         found = True
-
-
-
-
-
-for i in range(8):
-    for j in range(len(teams[i].teammates)):
-        print(teams[i].teammates[events[j]].name)
