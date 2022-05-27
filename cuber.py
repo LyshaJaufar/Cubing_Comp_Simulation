@@ -12,7 +12,6 @@ class Cuber:
         self.event = event
         self.position = position
         self.inTeam = False
-        self.team;
 
 def populateCuberList(events):
     eventNum = 0
@@ -33,4 +32,4 @@ def populateCuberList(events):
         eventNum += 1
 
 
-populateCuberList(events);
+populateCuberList(events)

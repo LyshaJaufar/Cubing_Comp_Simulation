@@ -21,10 +21,11 @@ class Team:
                 for i in range(len(cubers[events.index(event)])):
                     if (cubers[events.index(event)][i].position == n):
                         if (cubers[events.index(event)][i].inTeam == True):
-                            n += random.randint(1, len(cubers[0]))
+                            n = random.randint(1, len(cubers[0]))
                             break
 
-                        self.teammates[event] = cubers[events.index(event)][i]
+                        self.teammates[cubers[events.index(event)][i]] = event
                         cubers[events.index(event)][i].inTeam = True
                         cubers[events.index(event)][i].team = self.idNum
                         found = True
+                
