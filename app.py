@@ -6,11 +6,21 @@ from team import Team
 from cuber import Cuber
 from team import teams
 import itertools
+from flask import Flask, render_template
 
+teammates = []
+app = Flask(__name__)
+
+@app.route("/")
 def main():
-    if __name__ == '__main__':
-        populateTeams()
-        tournament(teams)
+    populateTeams()
+    winner = tournament(teams)
+
+    for key, value in winner.teammates.items():
+        teammates.append(key.name)
+    return render_template("index.html", name=teammates[0], name2=teammates[1], name3=teammates[2],
+    name4=teammates[3], name5=teammates[4], name6=teammates[5], name7=teammates[6], name8=teammates[7],
+    name9=teammates[8], name10=teammates[9], name11=teammates[10], name12=teammates[11])
 
 def populateTeams():
     for i in range(8):
@@ -35,7 +45,7 @@ def tournament(teams):
     finalists.append(compete(semiFinalists[0], semiFinalists[1]))
     finalists.append(compete(semiFinalists[2], semiFinalists[3]))
 
-    winner = compete(finalists[0], finalists[1])
-    print(winner.idNum)
+    return compete(finalists[0], finalists[1])
 
-main()
+
+
