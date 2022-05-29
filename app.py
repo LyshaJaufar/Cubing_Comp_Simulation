@@ -10,6 +10,7 @@ from flask import Flask, render_template
 
 teammates = []
 events = []
+
 app = Flask(__name__)
 
 @app.route("/")
