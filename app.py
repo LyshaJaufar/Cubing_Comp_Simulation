@@ -21,7 +21,8 @@ def main():
     for key, value in winner.teammates.items():
         teammates.append(key.name)
         events.append(value)
-    return render_template("index.html", len=len(teammates), teammates=teammates, events=events)
+        print(f"{value}: {key.name}")
+    # return render_template("index.html", len=len(teammates), teammates=teammates, events=events)
 
 def populateTeams():
     for i in range(8):
@@ -47,3 +48,5 @@ def tournament(teams):
     finalists.append(compete(semiFinalists[2], semiFinalists[3]))
 
     return compete(finalists[0], finalists[1])
+
+main()
