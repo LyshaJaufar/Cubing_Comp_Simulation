@@ -17,7 +17,7 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/simulate")
+@app.route("/Cubing_Comp_Simulation/templates/simulate")
 def main():
     populateTeams()
     winner = tournament(teams)
