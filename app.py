@@ -14,6 +14,10 @@ events = []
 app = Flask(__name__)
 
 @app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/simulate")
 def main():
     populateTeams()
     winner = tournament(teams)
@@ -21,7 +25,7 @@ def main():
     for key, value in winner.teammates.items():
         teammates.append(key.name)
         events.append(value)
-    return render_template("index.html", len=len(teammates), teammates=teammates, events=events)
+    return render_template("simulate.html", len=len(teammates), teammates=teammates, events=events)
 
 def populateTeams():
     for i in range(8):
