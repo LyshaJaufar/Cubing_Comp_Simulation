@@ -1,2 +1,1 @@
-# Cubing Tournament Simulation
- 
+# Cubing_Comp_Simulation
