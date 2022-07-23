@@ -2,9 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import random
+import json
 
 events = ['222', '333', '444', '555', '666', '777', '333oh', 'clock', 'minx', 'pyram', 'skewb', 'sq1']
 cubers = []
+jsonObj = {
+    "results": [
+
+    ]
+}
 
 class Cuber:
     def __init__(self, name, event, position):
@@ -31,5 +37,23 @@ def populateCuberList(events):
                 cuberPosition += 1
         eventNum += 1
 
+def populateJsonObj():
+    for event in cubers:
+        for cuber in event:
+            jsonObj['results'].append({
+                "name": cuber.name,
+                "event": cuber.event,
+                "position": cuber.position,
+                "inTeam": cuber.inTeam
+            })
+
+    writeToJsonFile()
+
+def writeToJsonFile():
+    jsonFile = open("cubers.json", "w")
+    jsonFile.write(json.dumps(jsonObj))
+    jsonFile.close()
+
 
 populateCuberList(events)
+populateJsonObj()

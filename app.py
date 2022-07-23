@@ -14,6 +14,7 @@ events = []
 def main():
     populateTeams()
     winner = tournament(teams)
+    print(winner)
 
 def populateTeams():
     for i in range(8):

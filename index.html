@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles.css" rel="stylesheet" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+
+      - paths:
+        - /app.py
+    </py-env>
+  </head>
+  <body>
+    <div>
+      <div id="one">Team 1</div>
+      <div>Team 2</div>
+      <div>Team 3</div>
+      <div>Team 4</div>
+      <div>Team 5</div>
+      <div>Team 6</div>
+      <div>Team 7</div>
+      <div>Team 8</div>
+      <label for="menuToggle" class="toggleButton md-button md-button--raised">Toggle Infobox</label>
+      <input id="menuToggle" type="checkbox"></input>
+        <div class="infobox md-card">
+          <div class="md-card-content">
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+          </div>
+        </div>
+      </div>
+
+    <py-script>
+
+      element = document.createElement('h1')
+      element.innerText = "Hello"
+      document.getElementById("one").append(element)
+    </py-script>
+  </body>
+</html>
