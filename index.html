@@ -15,11 +15,8 @@
     </py-env>
   </head>
   <body>
-    <div id="main"></div>
     <py-script>
       from app import teams 
-
-      main = document.querySelector("#main")
 
       def getTeams():
           i = 1
@@ -27,11 +24,11 @@
               menuToggle =  document.createElement('input')
               menuToggle.id = f"menuToggle{i}"
               menuToggle.type = "checkbox"
-              main.append(menuToggle)
+              document.body.append(menuToggle)
 
               div = document.createElement('div')
               div.classList.add("infobox", "md-card")
-              main.append(div)
+              document.body.append(div)
 
               innerDiv = document.createElement("div")
               innerDiv.id = f"innerDiv{i}"
@@ -42,8 +39,8 @@
               label.classList.add("toggleButton",  "md-button", "md-button--raised")
               label.innerHTML = f"Team {i}"
               label.htmlFor = f'menuToggle{i}'
+              document.body.append(label)
 
-              main.append(label)
               getTeammate(team, i)
               i+=1
 
