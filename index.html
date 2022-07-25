@@ -7,39 +7,54 @@
     <link href="styles.css" rel="stylesheet" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <py-env>
-
       - paths:
         - /app.py
+        - /team.py
+        - /cuber.py
+        - /cubers.json
     </py-env>
   </head>
   <body>
-    <div>
-      <div id="one">Team 1</div>
-      <div>Team 2</div>
-      <div>Team 3</div>
-      <div>Team 4</div>
-      <div>Team 5</div>
-      <div>Team 6</div>
-      <div>Team 7</div>
-      <div>Team 8</div>
-      <label for="menuToggle" class="toggleButton md-button md-button--raised">Toggle Infobox</label>
-      <input id="menuToggle" type="checkbox"></input>
-        <div class="infobox md-card">
-          <div class="md-card-content">
-            <li>hello world</li>
-            <li>hello world</li>
-            <li>hello world</li>
-            <li>hello world</li>
-            <li>hello world</li>
-          </div>
-        </div>
-      </div>
-
+    <div id="main"></div>
     <py-script>
+      from app import teams 
 
-      element = document.createElement('h1')
-      element.innerText = "Hello"
-      document.getElementById("one").append(element)
+      main = document.querySelector("#main")
+
+      def getTeams():
+          i = 1
+          for team in teams:
+              menuToggle =  document.createElement('input')
+              menuToggle.id = f"menuToggle{i}"
+              menuToggle.type = "checkbox"
+              main.append(menuToggle)
+
+              div = document.createElement('div')
+              div.classList.add("infobox", "md-card")
+              main.append(div)
+
+              innerDiv = document.createElement("div")
+              innerDiv.id = f"innerDiv{i}"
+              innerDiv.classList.add("md-card-content")
+              div.append(innerDiv)
+
+              label = document.createElement('label')
+              label.classList.add("toggleButton",  "md-button", "md-button--raised")
+              label.innerHTML = f"Team {i}"
+              label.htmlFor = f'menuToggle{i}'
+
+              main.append(label)
+              getTeammate(team, i)
+              i+=1
+
+      def getTeammate(team, i):
+          for teammate in team.teammates:
+              div = document.querySelector(f"#innerDiv{i}")
+              newDiv = document.createElement('li')
+              newDiv.innerHTML = teammate.name + " " + teammate.event
+              div.append(newDiv)   
+
+      getTeams()
     </py-script>
   </body>
 </html>

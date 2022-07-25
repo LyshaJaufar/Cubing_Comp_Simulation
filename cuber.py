@@ -1,7 +1,5 @@
-from bs4 import BeautifulSoup
-import requests
-import re
-import random
+# from bs4 import BeautifulSoup
+# import requests
 import json
 
 events = ['222', '333', '444', '555', '666', '777',
@@ -73,7 +71,7 @@ def populateCuberListFromJsonFile():
             cubers[eventNum].append(Cuber(cuber['name'], cuber['event'], cuber['position']))
         eventNum += 1
     file.close()
-    print(cubers)
+
 
 populateCuberListFromJsonFile()
 #populateCuberList(events)
