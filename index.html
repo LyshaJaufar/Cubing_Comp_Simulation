@@ -21,33 +21,33 @@
     <div class="tournament-tree">
         <div class="slot slot--18-1 slot--top slot--left">
             <div id="team0" class="team team--home"></div>
-            <div id="team1" class="team team--away team--winner"></div>
+            <div id="team1" class="team team--away"></div>
         </div>
         <div class="slot slot--18-2 slot--left">
             <div id="team2" class="team team--home"></div>
-            <div id="team3" class="team team--away team--winner"></div>
+            <div id="team3" class="team team--away"></div>
         </div>
         <div class="slot slot--18-3 slot--top slot--left">
-            <div id="team4" class="team team--home team--winner"></div>
+            <div id="team4" class="team team--home"></div>
             <div id="team5" class="team team--away"></div>
         </div>
         <div class="slot slot--18-4 slot--left">
             <div id="team6" class="team team--home"></div>
-            <div id="team7" class="team team--away team--winner"></div>
+            <div id="team7" class="team team--away"></div>
         </div>
         <div class="slot slot--14-1 slot--left">
             <div id="semifinalist0" class="team team--home"></div>
-            <div id="semifinalist1"   class="team team--away team--winner"></div>
+            <div id="semifinalist1"   class="team team--away"></div>
         </div>
         <div class="slot slot--14-2 slot--left">
-            <div id="semifinalist2" class="team team--home team--winner"></div>
+            <div id="semifinalist2" class="team team--home"></div>
             <div id="semifinalist3" class="team team--away"></div>
         </div>
         <div class="slot slot--12-1 slot--left">
-            <div id="finalist0" class="team team--home team--winner"></div>
+            <div id="finalist0" class="team team--home"></div>
             <div id="finalist1" class="team team--away"></div>
         </div>
-        <div id="winner" class="slot slot--11-1 team"></div>
+        <div id="winner" class="slot slot--11-1 team team--winner"></div>
         <py-script>
           from app import teams, semiFinalists, finalists, winner 
 
@@ -71,6 +71,9 @@
                     mainDiv = document.querySelector("#team6")
                   elif team.idNum == 8:
                     mainDiv = document.querySelector("#team7")
+
+                  if team.wins != 0:
+                    mainDiv.classList.add("team--winner")
                  
                   label = document.createElement('label')
                   label.classList.add("toggleButton",  "md-button", "md-button--raised")
@@ -104,7 +107,10 @@
                   if x == 2:
                       mainDiv = document.querySelector("#semifinalist2") 
                   if x == 3:
-                      mainDiv = document.querySelector("#semifinalist3")                       
+                      mainDiv = document.querySelector("#semifinalist3")     
+
+                  if semiFinalists[x].wins >= 2:
+                    mainDiv.classList.add("team--winner")                  
                  
                   label = document.createElement('label')
                   label.classList.add("toggleButton",  "md-button", "md-button--raised")
@@ -137,7 +143,10 @@
                   if x == 2:
                       mainDiv = document.querySelector("#finalist2") 
                   if x == 3:
-                      mainDiv = document.querySelector("#finalist3")                       
+                      mainDiv = document.querySelector("#finalist3")      
+
+                  if finalists[x].wins == 3:
+                    mainDiv.classList.add("team--winner")                                         
                  
                   label = document.createElement('label')
                   label.classList.add("toggleButton",  "md-button", "md-button--raised")
