@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="styles.css" rel="stylesheet" />
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cubing Competition - Tournament tree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <py-env>
       - paths:
@@ -13,46 +14,191 @@
         - /cuber.py
         - /cubers.json
     </py-env>
-  </head>
-  <body>
-    <svg width="500" height="500"><line x1="50" y1="50" x2="350" y2="350" stroke="black"/></svg>
-    <py-script>
-      from app import teams 
+</head>
+<body>
 
-      def getTeams():
-          i = 1
-          for team in teams:
-              menuToggle =  document.createElement('input')
-              menuToggle.id = f"menuToggle{i}"
-              menuToggle.type = "checkbox"
-              document.body.append(menuToggle)
+    <h1>CUBING COMPETITION - tournament tree</h1>
+    <div class="tournament-tree">
+        <div class="slot slot--18-1 slot--top slot--left">
+            <div id="team0" class="team team--home"></div>
+            <div id="team1" class="team team--away team--winner"></div>
+        </div>
+        <div class="slot slot--18-2 slot--left">
+            <div id="team2" class="team team--home"></div>
+            <div id="team3" class="team team--away team--winner"></div>
+        </div>
+        <div class="slot slot--18-3 slot--top slot--left">
+            <div id="team4" class="team team--home team--winner"></div>
+            <div id="team5" class="team team--away"></div>
+        </div>
+        <div class="slot slot--18-4 slot--left">
+            <div id="team6" class="team team--home"></div>
+            <div id="team7" class="team team--away team--winner"></div>
+        </div>
+        <div class="slot slot--14-1 slot--left">
+            <div id="semifinalist0" class="team team--home"></div>
+            <div id="semifinalist1"   class="team team--away team--winner"></div>
+        </div>
+        <div class="slot slot--14-2 slot--left">
+            <div id="semifinalist2" class="team team--home team--winner"></div>
+            <div id="semifinalist3" class="team team--away"></div>
+        </div>
+        <div class="slot slot--12-1 slot--left">
+            <div id="finalist0" class="team team--home team--winner"></div>
+            <div id="finalist1" class="team team--away"></div>
+        </div>
+        <div id="winner" class="slot slot--11-1 team"></div>
+        <py-script>
+          from app import teams, semiFinalists, finalists, winner 
 
-              div = document.createElement('div')
-              div.classList.add("infobox", "md-card")
-              document.body.append(div)
+          def getTeams():
 
-              innerDiv = document.createElement("div")
-              innerDiv.id = f"innerDiv{i}"
-              innerDiv.classList.add("md-card-content")
-              div.append(innerDiv)
+              i = 1
+              for team in teams:
+                  if team.idNum == 1:
+                    mainDiv = document.querySelector("#team0") 
+                  elif team.idNum == 2:
+                    mainDiv = document.querySelector("#team1")
+                  elif team.idNum == 3:
+                    mainDiv = document.querySelector("#team2")
+                  elif team.idNum == 4:
+                    mainDiv = document.querySelector("#team3")
+                  elif team.idNum == 5:
+                    mainDiv = document.querySelector("#team4")
+                  elif team.idNum == 6:
+                    mainDiv = document.querySelector("#team5")
+                  elif team.idNum == 7:
+                    mainDiv = document.querySelector("#team6")
+                  elif team.idNum == 8:
+                    mainDiv = document.querySelector("#team7")
+                 
+                  label = document.createElement('label')
+                  label.classList.add("toggleButton",  "md-button", "md-button--raised")
+                  label.innerHTML = f"Team {team.idNum}"
+                  label.htmlFor = f'menuToggle{i}'
+                  mainDiv.append(label)
 
-              label = document.createElement('label')
-              label.classList.add("toggleButton",  "md-button", "md-button--raised")
-              label.innerHTML = f"Team {i}"
-              label.htmlFor = f'menuToggle{i}'
-              document.body.append(label)
+                  menuToggle =  document.createElement('input')
+                  menuToggle.id = f"menuToggle{i}"
+                  menuToggle.type = "checkbox"
+                  mainDiv.append(menuToggle)
 
-              getTeammate(team, i)
-              i+=1
+                  div = document.createElement('div')
+                  div.classList.add("infobox", "md-card")
+                  mainDiv.append(div)
 
-      def getTeammate(team, i):
-          for teammate in team.teammates:
-              div = document.querySelector(f"#innerDiv{i}")
-              newDiv = document.createElement('li')
-              newDiv.innerHTML = teammate.name + " " + teammate.event
-              div.append(newDiv)   
+                  innerDiv = document.createElement("div")
+                  innerDiv.id = f"innerDiv{i}"
+                  innerDiv.classList.add("md-card-content")
+                  div.append(innerDiv)
 
-      getTeams()
-    </py-script>
-  </body>
+                  getTeammate(team, i)
+                  i+=1
+
+              
+              for x in range(len(semiFinalists)):
+                  if x == 0:
+                      mainDiv = document.querySelector("#semifinalist0") 
+                  if x == 1:
+                      mainDiv = document.querySelector("#semifinalist1") 
+                  if x == 2:
+                      mainDiv = document.querySelector("#semifinalist2") 
+                  if x == 3:
+                      mainDiv = document.querySelector("#semifinalist3")                       
+                 
+                  label = document.createElement('label')
+                  label.classList.add("toggleButton",  "md-button", "md-button--raised")
+                  label.innerHTML = f"Team {semiFinalists[x].idNum}"
+                  label.htmlFor = f'menuToggle{i}'
+                  mainDiv.append(label)
+
+                  menuToggle =  document.createElement('input')
+                  menuToggle.id = f"menuToggle{i}"
+                  menuToggle.type = "checkbox"
+                  mainDiv.append(menuToggle)
+
+                  div = document.createElement('div')
+                  div.classList.add("infobox", "md-card")
+                  mainDiv.append(div)
+
+                  innerDiv = document.createElement("div")
+                  innerDiv.id = f"innerDiv{i}"
+                  innerDiv.classList.add("md-card-content")
+                  div.append(innerDiv)
+
+                  getTeammate(semiFinalists[x], i)
+                  i+=1    
+
+              for x in range(len(finalists)):
+                  if x == 0:
+                      mainDiv = document.querySelector("#finalist0") 
+                  if x == 1:
+                      mainDiv = document.querySelector("#finalist1") 
+                  if x == 2:
+                      mainDiv = document.querySelector("#finalist2") 
+                  if x == 3:
+                      mainDiv = document.querySelector("#finalist3")                       
+                 
+                  label = document.createElement('label')
+                  label.classList.add("toggleButton",  "md-button", "md-button--raised")
+                  label.innerHTML = f"Team {finalists[x].idNum}"
+                  label.htmlFor = f'menuToggle{i}'
+                  mainDiv.append(label)
+
+                  menuToggle =  document.createElement('input')
+                  menuToggle.id = f"menuToggle{i}"
+                  menuToggle.type = "checkbox"
+                  mainDiv.append(menuToggle)
+
+                  div = document.createElement('div')
+                  div.classList.add("infobox", "md-card")
+                  mainDiv.append(div)
+
+                  innerDiv = document.createElement("div")
+                  innerDiv.id = f"innerDiv{i}"
+                  innerDiv.classList.add("md-card-content")
+                  div.append(innerDiv)
+
+                  getTeammate(finalists[x], i)
+                  i+=1              
+
+              for x in range(len(winner)):
+                  mainDiv = document.querySelector("#winner")               
+                 
+                  label = document.createElement('label')
+                  label.classList.add("toggleButton",  "md-button", "md-button--raised")
+                  label.innerHTML = f"Team {winner[x].idNum}"
+                  label.htmlFor = f'menuToggle{i}'
+                  mainDiv.append(label)
+
+                  menuToggle =  document.createElement('input')
+                  menuToggle.id = f"menuToggle{i}"
+                  menuToggle.type = "checkbox"
+                  mainDiv.append(menuToggle)
+
+                  div = document.createElement('div')
+                  div.classList.add("infobox", "md-card")
+                  mainDiv.append(div)
+
+                  innerDiv = document.createElement("div")
+                  innerDiv.id = f"innerDiv{i}"
+                  innerDiv.classList.add("md-card-content")
+                  div.append(innerDiv)
+
+                  getTeammate(winner[x], i)
+                  i+=1     
+
+
+          def getTeammate(team, i):
+              for teammate in team.teammates:
+                  div = document.querySelector(f"#innerDiv{i}")
+                  newDiv = document.createElement('li')
+                  newDiv.innerHTML = teammate.name + " " + teammate.event
+                  div.append(newDiv)   
+
+          getTeams()
+        </py-script>
+    </div>
+</body>
 </html>
+

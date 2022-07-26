@@ -10,6 +10,7 @@ class Team:
         self.size = 12      # 1 cuber per event, for 12 events
         self.idNum = idNum
         self.teammates = {}
+        self.wins = 0
 
     def createTeam(self):
         # Randomise rankings for each event

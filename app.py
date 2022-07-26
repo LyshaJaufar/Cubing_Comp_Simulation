@@ -7,7 +7,9 @@ eventsInit = ['222', '333', '444', '555', '666', '777',
               '333oh', 'clock', 'minx', 'pyram', 'skewb', 'sq1']
 teammates = []
 events = []
-
+semiFinalists = []
+finalists = []
+winner = []
 
 def main():
     populateTeams()
@@ -32,24 +34,26 @@ def compete(team1, team2):
         team2Points += 1 if cuber2.position < cuber1.position else 0
 
     winner = team1 if team1Points > team2Points else team2
+    if team1Points > team2Points:
+        team1.wins += 1
+    else:
+        team2.wins += 1
+
     return winner
 
 
 def tournament(teams):
-    semiFinalists = []
-    finalists = []
+
     for i in range(0, len(teams) - 1, 2):
+        
         semiFinalists.append(compete(teams[i], teams[i + 1]))
 
     finalists.append(compete(semiFinalists[0], semiFinalists[1]))
     finalists.append(compete(semiFinalists[2], semiFinalists[3]))
 
-    return compete(finalists[0], finalists[1])
-
-
-
-
-
+    winsFinal = compete(finalists[0], finalists[1])
+    winner.append(winsFinal)
+    return winsFinal
 
 
 main()
