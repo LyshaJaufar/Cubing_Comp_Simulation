@@ -47,12 +47,21 @@
             <div id="finalist0" class="team"></div>
             <div id="finalist1" class="team"></div>
         </div>
-        <div id="winner" class="slot slot--11-1 team team--winner"></div>
+        <div id="winner" class="slot slot--11-1 team team--winner"></div> 
+        <button class="button" >New Tournament</button>
         <py-script>
           from app import teams, semiFinalists, finalists, winner 
+          from js import window
+          from pyodide import create_proxy
+
+          def newTournament(event):
+              window.location.reload()
+
+          function_proxy = create_proxy(newTournament)
+
+          document.querySelector("button").addEventListener("click", function_proxy)
 
           def getTeams():
-
               i = 1
               for x in range(len(teams)):
                   if teams[x].idNum == 1:
@@ -266,6 +275,10 @@
                   newDiv.append(awayTeam)
 
           getTeams()
+
+
+
+
         </py-script>
     </div>
 </body>

@@ -1,3 +1,15 @@
+:root {
+  --border-size: 0.125rem;
+  --duration: 250ms;
+  --ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --font-family: monospace;
+  --color-primary: white;
+  --color-secondary: black;
+  --color-tertiary: dodgerblue;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --space: 1rem;
+}
+
 
 .md-button{
 	display: inline-block;
@@ -32,8 +44,6 @@
 	background-color: #313552;
 	border-radius: 5px;
 	overflow: hidden;
-
-
 }
 
 .md-card-content{
@@ -173,13 +183,13 @@ ul li::before {
     grid-template-rows: 80px;
     grid-template-columns: 220px 220px 220px 220px;
     grid-template-areas:
-        'slot--18-1 . . .  '
-        '. slot--14-1 . . '
-        'slot--18-2 . . . '
-        '. . slot--12-1 slot--11-1'
-        'slot--18-3 . . .  '
-        '. slot--14-2 . . '
-        'slot--18-4 . . .  ';
+        'slot--18-1 . . . . button  '
+        '. slot--14-1 . . . .'
+        'slot--18-2 . . . . .'
+        '. . slot--12-1 slot--11-1 . .'
+        'slot--18-3 . . . . . '
+        '. slot--14-2 . . . .'
+        'slot--18-4 . . . . . ';
 }
 
 
@@ -194,6 +204,28 @@ ul li::before {
 .slot--12-1 { grid-area: slot--12-1; }
 
 .slot--11-1 { grid-area: slot--11-1; }
+.button { 
+    grid-area: button;
+    width: 50%;
+    box-shadow: var(--shadow) 4px 4px;
+    text-shadow: var(--shadow) 2px 2px;
+    transition: flex-grow var(--duration) var(--ease);
+    text-transform: uppercase;
+    font-family: var(--font-family);
+    border: var(--border-size) solid black;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-weight:900;
+    background: #CDDEFF;
+}
+
+
+
+.button:hover{
+    background-color: rgb(162, 176, 201);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
 
 .slot {
     border: 1px solid #263e6d;
@@ -314,3 +346,4 @@ ul li::before {
 .winnerULcolor {
     color: #CDDEFF;
 }
+
