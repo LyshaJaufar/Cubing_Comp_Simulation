@@ -4,6 +4,23 @@ import json
 
 events = ['222', '333', '444', '555', '666', '777',
           '333oh', 'clock', 'minx', 'pyram', 'skewb', 'sq1']
+
+eventsConverted = {
+    '222': '2x2',
+    '333': '3x3',
+    '444': '4x4',
+    '555': '5x5',
+    '666': '6x6',
+    '777': '7x7',
+    '333oh': "3x3 OH",
+    'clock': 'CLock',
+    "minx": "Megaminx",
+    'pyram': "Pyraminx",
+    "skewb": "Skewb",
+    "sq1": "Square-1"
+}
+
+
 cubers = []
 jsonObj = {
     "results": [
@@ -35,7 +52,7 @@ def populateCuberList(events):
             nameSplit = (str(cuberLink).split(">"))
             if (len(nameSplit) > 2):
                 cubers[eventNum].append(
-                    Cuber(nameSplit[1].split("<")[0], event, cuberPosition))
+                    Cuber(nameSplit[1].split("<")[0], eventsConverted[event], cuberPosition))
                 cuberPosition += 1
         eventNum += 1
 
@@ -60,6 +77,7 @@ def writeToJsonFile():
     jsonFile.write(json.dumps(jsonObj))
     jsonFile.close()
 
+
 def populateCuberListFromJsonFile():
     file = open('cubers.json')
     data = json.load(file)
@@ -68,11 +86,12 @@ def populateCuberListFromJsonFile():
     for event in data['results']:
         cubers.append([])
         for cuber in event:
-            cubers[eventNum].append(Cuber(cuber['name'], cuber['event'], cuber['position']))
+            cubers[eventNum].append(
+                Cuber(cuber['name'], cuber['event'], cuber['position']))
         eventNum += 1
     file.close()
 
 
 populateCuberListFromJsonFile()
-#populateCuberList(events)
-#populateJsonObj()
+# populateCuberList(events)
+# populateJsonObj()

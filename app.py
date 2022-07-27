@@ -15,10 +15,12 @@ def main():
     populateTeams()
     winner = tournament(teams)
 
-    # for cuber in winner.teammates:
-    #print(cuber.name, cuber.event, cuber.position)
+    """
+    for cuber in winner.teammates:
+        print(cuber.name, cuber.event, cuber.position)
+    """
 
-    # getTeams()
+
 
 
 def populateTeams():
@@ -43,9 +45,7 @@ def compete(team1, team2):
 
 
 def tournament(teams):
-
-    for i in range(0, len(teams) - 1, 2):
-        
+    for i in range(0, len(teams) - 1, 2): 
         semiFinalists.append(compete(teams[i], teams[i + 1]))
 
     finalists.append(compete(semiFinalists[0], semiFinalists[1]))

@@ -20,32 +20,32 @@
     <h1>CUBING COMPETITION - tournament tree</h1>
     <div class="tournament-tree">
         <div class="slot slot--18-1 slot--top slot--left">
-            <div id="team0" class="team team--home"></div>
-            <div id="team1" class="team team--away"></div>
+            <div id="team0" class="team"></div>
+            <div id="team1" class="team"></div>
         </div>
         <div class="slot slot--18-2 slot--left">
-            <div id="team2" class="team team--home"></div>
-            <div id="team3" class="team team--away"></div>
+            <div id="team2" class="team"></div>
+            <div id="team3" class="team"></div>
         </div>
         <div class="slot slot--18-3 slot--top slot--left">
-            <div id="team4" class="team team--home"></div>
-            <div id="team5" class="team team--away"></div>
+            <div id="team4" class="team"></div>
+            <div id="team5" class="team"></div>
         </div>
         <div class="slot slot--18-4 slot--left">
-            <div id="team6" class="team team--home"></div>
-            <div id="team7" class="team team--away"></div>
+            <div id="team6" class="team"></div>
+            <div id="team7" class="team"></div>
         </div>
         <div class="slot slot--14-1 slot--left">
-            <div id="semifinalist0" class="team team--home"></div>
-            <div id="semifinalist1"   class="team team--away"></div>
+            <div id="semifinalist0" class="team"></div>
+            <div id="semifinalist1"   class="team"></div>
         </div>
         <div class="slot slot--14-2 slot--left">
-            <div id="semifinalist2" class="team team--home"></div>
-            <div id="semifinalist3" class="team team--away"></div>
+            <div id="semifinalist2" class="team"></div>
+            <div id="semifinalist3" class="team"></div>
         </div>
         <div class="slot slot--12-1 slot--left">
-            <div id="finalist0" class="team team--home"></div>
-            <div id="finalist1" class="team team--away"></div>
+            <div id="finalist0" class="team"></div>
+            <div id="finalist1" class="team"></div>
         </div>
         <div id="winner" class="slot slot--11-1 team team--winner"></div>
         <py-script>
@@ -54,30 +54,31 @@
           def getTeams():
 
               i = 1
-              for team in teams:
-                  if team.idNum == 1:
+              for x in range(len(teams)):
+                  if teams[x].idNum == 1:
                     mainDiv = document.querySelector("#team0") 
-                  elif team.idNum == 2:
+
+                  elif teams[x].idNum == 2:
                     mainDiv = document.querySelector("#team1")
-                  elif team.idNum == 3:
+                  elif teams[x].idNum == 3:
                     mainDiv = document.querySelector("#team2")
-                  elif team.idNum == 4:
+                  elif teams[x].idNum == 4:
                     mainDiv = document.querySelector("#team3")
-                  elif team.idNum == 5:
+                  elif teams[x].idNum == 5:
                     mainDiv = document.querySelector("#team4")
-                  elif team.idNum == 6:
+                  elif teams[x].idNum == 6:
                     mainDiv = document.querySelector("#team5")
-                  elif team.idNum == 7:
+                  elif teams[x].idNum == 7:
                     mainDiv = document.querySelector("#team6")
-                  elif team.idNum == 8:
+                  elif teams[x].idNum == 8:
                     mainDiv = document.querySelector("#team7")
 
-                  if team.wins != 0:
+                  if teams[x].wins != 0:
                     mainDiv.classList.add("team--winner")
                  
                   label = document.createElement('label')
                   label.classList.add("toggleButton",  "md-button", "md-button--raised")
-                  label.innerHTML = f"Team {team.idNum}"
+                  label.innerHTML = f"Team {teams[x].idNum}"
                   label.htmlFor = f'menuToggle{i}'
                   mainDiv.append(label)
 
@@ -95,7 +96,10 @@
                   innerDiv.classList.add("md-card-content")
                   div.append(innerDiv)
 
-                  getTeammate(team, i)
+                  if ((x % 2) == 0):
+                    getTeammate(teams[x], i, teams[x + 1])
+                  else:
+                    getTeammate(teams[x], i, teams[x - 1])
                   i+=1
 
               
@@ -132,7 +136,10 @@
                   innerDiv.classList.add("md-card-content")
                   div.append(innerDiv)
 
-                  getTeammate(semiFinalists[x], i)
+                  if ((x % 2) == 0):
+                    getTeammate(semiFinalists[x], i, semiFinalists[x + 1])
+                  else:
+                    getTeammate(semiFinalists[x], i, semiFinalists[x - 1])
                   i+=1    
 
               for x in range(len(finalists)):
@@ -168,7 +175,10 @@
                   innerDiv.classList.add("md-card-content")
                   div.append(innerDiv)
 
-                  getTeammate(finalists[x], i)
+                  if (x == 0):
+                    getTeammate(finalists[x], i, finalists[x + 1])
+                  else:
+                    getTeammate(finalists[x], i, finalists[x - 1])
                   i+=1              
 
               for x in range(len(winner)):
@@ -194,16 +204,66 @@
                   innerDiv.classList.add("md-card-content")
                   div.append(innerDiv)
 
-                  getTeammate(winner[x], i)
+                  winnerHTML(winner[x], i)
                   i+=1     
 
 
-          def getTeammate(team, i):
+          def winnerHTML(team, i):
+              div = document.querySelector(f"#innerDiv{i}")
+              ul = document.createElement('ul')
+
+              winnersHeading = document.createElement("span")
+              winnersHeading.innerHTML = "WINNERS"
+              winnersHeading.classList.add("winnerULcolor")
+
+              div.append(ul)
+              ul.append(winnersHeading)
+              
               for teammate in team.teammates:
-                  div = document.querySelector(f"#innerDiv{i}")
-                  newDiv = document.createElement('li')
-                  newDiv.innerHTML = teammate.name + " " + teammate.event
-                  div.append(newDiv)   
+                  newDiv = document.createElement("li")
+
+                  eventSpan = document.createElement("span")
+                  eventSpan.classList.add("eventSpan")
+                  eventSpan.innerHTML = teammate.event + ": "
+
+                  winnerTeamSpan = document.createElement("span")
+                  winnerTeamSpan.innerHTML = teammate.name
+
+                  ul.append(newDiv)   
+                  newDiv.append(eventSpan)
+                  newDiv.append(winnerTeamSpan)
+
+
+          def getTeammate(team1, i, team2):
+              div = document.querySelector(f"#innerDiv{i}")
+              ul = document.createElement('ul')
+              div.append(ul)
+              
+              for (cuber1, cuber2) in zip(team1.teammates, team2.teammates):
+                  newDiv = document.createElement("li")
+                  eventSpan = document.createElement("span")
+                  eventSpan.classList.add("eventSpan")
+                  eventSpan.innerHTML = cuber1.event + ": "
+
+                  homeTeam = document.createElement('span')
+                  awayTeam = document.createElement('span')
+
+                  homeTeam.innerHTML = cuber1.name
+                  awayTeam.innerHTML = cuber2.name
+
+                  versusSpan = document.createElement("span")
+                  versusSpan.innerHTML = " vs "
+
+                  if cuber1.position < cuber2.position:
+                    homeTeam.classList.add("wins")
+                  else:
+                    homeTeam.classList.add("loses")
+
+                  ul.append(newDiv)   
+                  newDiv.append(eventSpan)
+                  newDiv.append(homeTeam)
+                  newDiv.append(versusSpan)
+                  newDiv.append(awayTeam)
 
           getTeams()
         </py-script>
