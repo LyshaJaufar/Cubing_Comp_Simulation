@@ -4,6 +4,7 @@ from cuber import cubers
 import random
 
 teams = []
+in_another_event = []
 
 class Team:
     def __init__(self, idNum):
@@ -25,8 +26,14 @@ class Team:
                             n = random.randint(1, len(cubers[0]))
                             break
 
+                        for name in in_another_event:
+                            if cubers[events.index(event)][i].name == name:
+                                n = random.randint(1, len(cubers[0]))
+                                break
+
                         self.teammates[cubers[events.index(event)][i]] = event
                         cubers[events.index(event)][i].inTeam = True
+                        in_another_event.append(cubers[events.index(event)][i].name)
                         cubers[events.index(event)][i].team = self.idNum
                         found = True
                 

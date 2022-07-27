@@ -39,8 +39,10 @@
 .md-card-content{
 	padding: 10px;
 	min-width: 500px;
+}
 
-
+.smaller-card-content {
+    min-width: 300px;
 }
 
 .toggleButton{
