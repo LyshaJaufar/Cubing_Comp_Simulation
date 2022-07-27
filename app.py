@@ -15,12 +15,8 @@ def main():
     populateTeams()
     winner = tournament(teams)
 
-    """
     for cuber in winner.teammates:
         print(cuber.name, cuber.event, cuber.position)
-    """
-
-
 
 
 def populateTeams():

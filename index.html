@@ -43,7 +43,6 @@
         <button class="button" >New Tournament</button>
         <button class="with-tooltip infoBubble" data-tooltip-content="There are 11 cubers in a team, each cuber completing a solve for a single event. In each match, two teams face off against one another. For each event, the cuber chosen to complete the solve for the given event will go head-to-head against the cuber chosen for that event from the opposing team. The team which has won the most events will proceed to the next round.">i</button>
         <py-script>
-
           from js import window
           from pyodide import create_proxy
           from pyodide.http import open_url
@@ -77,14 +76,12 @@
               "sq1": "Square-1"
           }
 
-
           cubers = []
           jsonObj = {
               "results": [
 
               ]
           }
-
 
           class Cuber:
               def __init__(self, name, event, position):
@@ -106,9 +103,7 @@
                   eventNum += 1
               file.close()
 
-
           populateCuberListFromJsonFile()
-
 
           teams = []
           in_another_event = []
@@ -181,12 +176,7 @@
               winner.append(winsFinal)
               return winsFinal
 
-
           main()
-
-
-
-
 
 
           def newTournament(event):
@@ -410,10 +400,6 @@
                   newDiv.append(awayTeam)
 
           getTeams()
-
-
-
-
         </py-script>
     </div>
 </body>

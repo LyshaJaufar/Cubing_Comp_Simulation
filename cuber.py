@@ -1,5 +1,5 @@
-# from bs4 import BeautifulSoup
-# import requests
+from bs4 import BeautifulSoup
+import requests
 import json
 
 events = ['222', '333', '444', '555', '666', '777',
@@ -91,6 +91,6 @@ def populateCuberListFromJsonFile():
     file.close()
 
 
-populateCuberListFromJsonFile()
-# populateCuberList(events)
-# populateJsonObj()
+# populateCuberListFromJsonFile()
+populateCuberList(events)
+populateJsonObj()
