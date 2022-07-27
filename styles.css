@@ -115,6 +115,9 @@
 	display: none;
 }
 
+#info {
+    display: none;
+}
 	
 .infobox{
 	visibility: hidden;
@@ -184,7 +187,7 @@ ul li::before {
     grid-template-columns: 220px 220px 220px 220px;
     grid-template-areas:
         'slot--18-1 . . . . button  '
-        '. slot--14-1 . . . .'
+        '. slot--14-1 . . . infoBubble'
         'slot--18-2 . . . . .'
         '. . slot--12-1 slot--11-1 . .'
         'slot--18-3 . . . . . '
@@ -218,7 +221,28 @@ ul li::before {
     font-weight:900;
     background: #CDDEFF;
 }
+.infoBubble {
+    font-weight:900;
+    grid-area: infoBubble;
+    width: 20%;
+    height: 40%;
+    margin-left: 15%;
+    border-radius: 50%;
+    border:  var(--border-size) solid black;
+    box-shadow: var(--shadow) 4px 4px;
+    text-shadow: var(--shadow) 2px 2px;
+    background: #CDDEFF;
+    cursor: pointer;
+    font-family: var(--font-family);
+    justify-content: center;
+    text-align: center;
+    padding-top: 1%;
+}
 
+.infoBubble:hover{
+    background-color: rgb(162, 176, 201);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
 
 
 .button:hover{
@@ -347,3 +371,31 @@ ul li::before {
     color: #CDDEFF;
 }
 
+.with-tooltip {
+  position: relative;
+}
+
+.with-tooltip::after {
+    content: attr(data-tooltip-content);
+    padding: 8px;
+    border-radius: 4px;
+    position: absolute;
+    color: white;
+    top: 45%;
+    left: -150%;  
+    white-space: pre-line;
+    min-width: 200px;
+
+    background-color: gray;
+    opacity: 0;
+    font-size: 0.8rem;
+    visibility: hidden;
+    transform: translate(-50%, 18px) scale(0.8);
+    transition: visibility, opacity, transform 200ms;
+}
+
+.with-tooltip:hover::after {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
