@@ -1,6 +1,6 @@
 # Cubing Tournament Simulation
 # About
-Computes teams for a head-to-head relay cubing tournament.
+Computes teams and simulates a cubing head-to-head relay tournament.
 
 There are 11 cubers in a team, each cuber completing a solve for a single event. The events are: 2x2, 3x3, 4x4, 5x5, 6x6, 7x7, 3x3OH, Mega, Pyra, Sq-1, Skewb. 
 
