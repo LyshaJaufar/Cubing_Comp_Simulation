@@ -28,6 +28,7 @@ h1 {
     text-align: center;
     text-transform: uppercase;
 	color: #1A1A40;
+    user-select: none;
 }
 
 ul {
@@ -41,6 +42,7 @@ ul li::before {
   display: inline-block; /* Needed to add space between the bullet and the text */
   width: 1em; /* Also needed for space (tweak if needed) */
   margin-left: -1em; /* Also needed for space (tweak if needed) */
+  user-select: none;
 }
 
 /* TOGGLE */
@@ -102,6 +104,7 @@ ul li::before {
 
 #winner {
 	color: #00FFAB;
+    user-select: none;
 }
 
 .md-button{
@@ -127,6 +130,7 @@ ul li::before {
 	font-weight: bolder;
     font-family: var(--font-family);
     text-shadow: var(--shadow) 2px 2px;
+    user-select: none;
 }
 
 .md-button.md-button--raised:hover{
@@ -338,6 +342,7 @@ ul li::before {
     font-weight: 700;
     background: #748DA6;
     color: #CDDEFF;
+    user-select: none;
 }
 
 .team--winner {
@@ -346,18 +351,22 @@ ul li::before {
 
 .winnerULcolor {
     color: #CDDEFF;
+    user-select: none;
 }
 
 .wins {
     color:#00FFAB;
+    user-select: none;
 }
 
 .loses {
     color: #EC255A;
+    user-select: none;
 }
 
 .eventSpan {
     color: #F4EBC1;
+    user-select: none;
 }
 
 .with-tooltip {
@@ -370,6 +379,7 @@ ul li::before {
     border-radius: 4px;
     position: absolute;
     color: white;
+    user-select: none;
     top: 45%;
     left: -150%;  
     white-space: pre-line;
