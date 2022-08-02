@@ -3,7 +3,7 @@ import requests
 import json
 
 events = ['222', '333', '444', '555', '666', '777',
-          '333oh','minx', 'pyram', 'skewb', 'sq1']
+          '333oh', '333bf', 'minx', 'pyram', 'skewb', 'sq1', 'clock']
 
 eventsConverted = {
     '222': '2x2',
@@ -13,10 +13,12 @@ eventsConverted = {
     '666': '6x6',
     '777': '7x7',
     '333oh': "3x3 OH",
+    '333bf': '3x3 BLD',
     "minx": "Megaminx",
     'pyram': "Pyraminx",
     "skewb": "Skewb",
-    "sq1": "Square-1"
+    "sq1": "Square-1",
+    'clock': "Clock"
 }
 
 

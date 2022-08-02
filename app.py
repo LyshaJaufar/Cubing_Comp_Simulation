@@ -4,12 +4,13 @@ from team import teams
 
 
 eventsInit = ['222', '333', '444', '555', '666', '777',
-              '333oh', 'clock', 'minx', 'pyram', 'skewb', 'sq1']
+              '333oh', '333bf', 'clock', 'minx', 'pyram', 'skewb', 'sq1', 'clock']
 teammates = []
 events = []
 semiFinalists = []
 finalists = []
 winner = []
+
 
 def main():
     populateTeams()
@@ -41,7 +42,7 @@ def compete(team1, team2):
 
 
 def tournament(teams):
-    for i in range(0, len(teams) - 1, 2): 
+    for i in range(0, len(teams) - 1, 2):
         semiFinalists.append(compete(teams[i], teams[i + 1]))
 
     finalists.append(compete(semiFinalists[0], semiFinalists[1]))
