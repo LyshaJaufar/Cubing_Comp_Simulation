@@ -2,7 +2,7 @@
 ## About
 Computes teams and simulates a cubing head-to-head relay tournament.
 
-There are 11 cubers in a team, each cuber completing a solve for a single event. The events are: 2x2, 3x3, 4x4, 5x5, 6x6, 7x7, 3x3OH, Mega, Pyra, Sq-1, Skewb. 
+There are 13 cubers in a team, each cuber completing a solve for a single event. The events are: 2x2, 3x3, 4x4, 5x5, 6x6, 7x7, 3x3OH, 3x3BLD, Mega, Pyra, Sq-1, Skewb, Clock. 
 
 In each match, two teams face off against one another. For each event, the cuber chosen to complete the solve for the given event will go head-to-head against the cuber chosen for that event from the opposing team. The team which has won the most events will proceed to the next round.
 
