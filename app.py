@@ -4,7 +4,7 @@ from team import teams
 
 
 eventsInit = ['222', '333', '444', '555', '666', '777',
-              '333oh', '333bf', 'clock', 'minx', 'pyram', 'skewb', 'sq1', 'clock']
+              '333oh', '333bf','minx', 'pyram', 'skewb', 'sq1', 'clock']
 teammates = []
 events = []
 semiFinalists = []
